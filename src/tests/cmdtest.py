@@ -13,6 +13,17 @@ cm.run('load batch1')
 #following commands ignored
 cm.run('load batch1 foo bar')
 
+#load batch and then execute a command
+cm.run('load batch1 add 10')
+cm.run('load batch1 add 10 player')
+cm.run('load batch1 add 10 player f')
+cm.run('load batch1 add 10 player f 200')
+
+cm.run('load batch1 add additem')
+cm.run('load batch1 add additem player')
+cm.run('load batch1 add additem player f')
+cm.run('load batch1 add additem player f 200')
+
 
 #testing toggle commands
 cm.run('new add 0')
@@ -36,28 +47,87 @@ cm.run('new add ts')
 cm.run('new add 9')
 cm.run('new add tt')
 
-
+"""additem"""
 #should place user in CLI 
 #prompting for the remaining input
+#command code
 cm.run('new add 10')
 cm.run('new add 10 player')
 cm.run('new add 10 player f')
-cm.run('new add 10 player f 200')
-
+#command name
 cm.run('new add additem')
 cm.run('new add additem player')
 cm.run('new add additem player f')
+
+#full input; should place user at menu
+cm.run('new add 10 player f 200')
 cm.run('new add additem player f 200')
 
-cm.run('load batch1 add 10')
-cm.run('load batch1 add 10 player')
-cm.run('load batch1 add 10 player f')
-cm.run('load batch1 add 10 player f 200')
 
-cm.run('load batch1 add additem')
-cm.run('load batch1 add additem player')
-cm.run('load batch1 add additem player f')
-cm.run('load batch1 add additem player f 200')
+
+
+"""addperk"""
+#should place user in CLI 
+#prompting for the remaining input
+#command code
+cm.run('new add 11')
+cm.run('new add 11 player')
+cm.run('new add 11 player 000BE127')
+#command name
+cm.run('new add addperk')
+cm.run('new add addperk player')
+cm.run('new add addperk player 000BE127')
+
+#full input; should place user at menu
+cm.run('new add 10 player 000BE127')
+cm.run('new add addperk player 000BE127')
+
+
+"""addspell"""
+#should place user in CLI 
+#prompting for the remaining input
+#command code
+cm.run('new add 12')
+cm.run('new add 12 player')
+cm.run('new add 12 player f')
+#command name
+cm.run('new add additem')
+cm.run('new add additem player')
+cm.run('new add additem player f')
+
+#full input; should place user at menu
+cm.run('new add 10 player f 200')
+cm.run('new add additem player f 200')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
