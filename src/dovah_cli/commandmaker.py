@@ -1,5 +1,5 @@
 from ..skyrimdata.skyrimcommands import skyrim_commands
-from .lookup import user_lookup, valuename_lookup
+from .lookup import user_lookup, command_lookup
 from rich import print
 from rich.table import Table
 from os import system, walk
@@ -67,7 +67,6 @@ def run_text_ui(args=None):
         if args: args.clear()
 
 
-
 '''Add Command to cmd_list'''
 def add_cmd(arg=None):
     #first argument should be either key to command or name of command
@@ -77,7 +76,7 @@ def add_cmd(arg=None):
     if arg:
         basearg = arg.pop(0)
         #check if the argument is the key corresponding to a command
-        key = valuename_lookup(basearg, 'command')
+        key = command_lookup(basearg, 'command')
         if key < 0:
             key = _ask_for_cmd_key()
         cmdbase = skyrim_commands[key][0]
@@ -85,13 +84,10 @@ def add_cmd(arg=None):
         key = _ask_for_cmd_key()
         cmdbase = skyrim_commands[key][0]
     #next argument is the desired target if applicable
-    target = None
-    if key >= 10:
-        if arg:
-            target = arg.pop(0)  #e.g. add additem player
-        else:
-            target = _ask_for_target()
-
+    if arg:
+        target = arg.pop(0)  #e.g. add additem player
+    else:
+        target = _ask_for_target()
     #next is all remaining parameters get passed through ask_for_param
     other_params = skyrim_commands[key][1::]
     param_answers = []
@@ -131,7 +127,7 @@ def load_cmds(filename, testing=False):
 #Helper methods for the console command writer
 def _ask_for_cmd_key():
     s = input('input name or id# of desired command: ')
-    s_key = valuename_lookup(s, 'command')
+    s_key = command_lookup(s, 'command')
     if s_key > 0:
         return s_key
     else:
@@ -139,7 +135,7 @@ def _ask_for_cmd_key():
             print(str(i)+str(skyrim_commands[i]))
         while(s_key < 0):
             s = input('select key: ')
-            s_key = valuename_lookup(s, 'command')
+            s_key = command_lookup(s, 'command')
         return s_key
 
 def _ask_for_target():

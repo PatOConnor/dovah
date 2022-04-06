@@ -15,8 +15,6 @@ def run(category=None, testing=False):
 
     if category == 'items':
         scrape_all(category, 88)#second parameter is how many pages of data to scrape
-    elif category == 'npcs':
-        scrape_all(category, 28)
     elif category == 'enchantments':
         scrape_all(category, 10)
     elif category in ('perks', 'quests', 'spells', 'avs', 'weather'):
@@ -32,14 +30,12 @@ def main_menu():
         '#\t\tFor use with Command Batcher\n',
         '#\tBy Pat O\'Connor\n',
         '#\tData Courtesy of skyrimcommands.com and UESP\n')
-    print('categories are items, perks, npcs, spells, avs, quests, enchantments, weather')
+    print('categories are items, perks, spells, avs, quests, enchantments, weather')
     return input('enter item type to gather: ').lower().strip()
 
 def get_all_tables():
     print('items')
     scrape_all('items', 88)
-    print('npcs')
-    scrape_all('npcs', 28)
     print('enchantments')
     scrape_all('enchantments', 10)
     for c in ['perks', 'quests', 'spells', 'avs', 'weather']:

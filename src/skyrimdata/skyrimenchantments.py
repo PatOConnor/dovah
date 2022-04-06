@@ -499,7 +499,7 @@ skyrim_enchantments = {
 	497:('Heavy Fire Damage', '0010E4B0', 'Miscellaneous'),
 	498:('Heavy Fire Damage', '000FBFEA', 'Miscellaneous'),
 	499:('Homecooked Meal', '0010E72F', 'Miscellaneous'),
-	500:('Huntsman’s Prowess', '00105831', 'Weapon'),
+	500:('Huntsmanâ€™s Prowess', '00105831', 'Weapon'),
 	501:('Hysteria', '0007E8D8', 'Miscellaneous'),
 	502:('Hysteria - Master of the Mind', '0009E0C3', 'Miscellaneous'),
 	503:('Ice Form', '000D4FF1', 'Miscellaneous'),

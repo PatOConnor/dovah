@@ -1,4 +1,4 @@
-import getskydata, getalchemy, getalcheffects, getfactiondata
+import getskydata, getalchemy, getalcheffects, getfactiondata, getnpcdata, getlocationdata, getcommands
 def run(param=None):
     print(param)
     if not param:
@@ -17,15 +17,22 @@ def run(param=None):
     elif module_argument in ['3', 'e']:
         getalcheffects.run()
     elif module_argument in ['4', 'all']:
-        getskydata.run()
+        getskydata.run('all')
         getalchemy.run()
         getalcheffects.run()
         getfactiondata.run()
+        getcommands.run()
+        getlocationdata.run()
+        getnpcdata.run()
     elif module_argument in ['5', 'test']:
         getskydata.run(testing=True)
         getalchemy.run(is_test=True)
         getalcheffects.run(is_test=True)
         getfactiondata.run(is_test=True)
+        getcommands.run(is_test=True)
+        getlocationdata.run(is_test=True)
+        getnpcdata.run(is_test=True)
+
 
 
 if __name__=='__main__':

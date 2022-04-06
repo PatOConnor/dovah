@@ -9,6 +9,7 @@ from ..skyrimdata.skyrimspells import skyrim_spells
 from ..skyrimdata.skyrimweather import skyrim_weather
 from ..skyrimdata.skyrimskills import skyrim_skills
 from ..skyrimdata.skyrimalchemy import ingredients, effects
+from ..skyrimdata.skyrimlocations import skyrim_locations
 
 
 def catalog_reference(category):
@@ -33,6 +34,12 @@ def catalog_reference(category):
         targetdict = skyrim_weather
     elif category == 'skill':
         targetdict = skyrim_skills
+    elif category == 'ingredients':
+        targetdict = ingredients
+    elif category == 'effects':
+        targetdict = effects
+    elif category == 'locations':
+        targetdict = skyrim_locations
     else:
         raise ValueError
     return targetdict
@@ -48,13 +55,13 @@ def user_lookup(category): #catagory is string
             print(i, catalog[i])
     while (True):
         word = input('which one is being added? ')
-        item_key = valuename_lookup(word,category)
+        item_key = command_lookup(word,category)
         if item_key > 0:
             break
     return catalog[item_key]
 
 #returns the key of the item that has the argument string in the first element
-def valuename_lookup(lookupstr, category=None):
+def command_lookup(lookupstr, category=None):
     catalog = catalog_reference(category)
     #first, check if it itself is a number and continue on if it is not
     try:
@@ -65,8 +72,8 @@ def valuename_lookup(lookupstr, category=None):
             return -1
     except ValueError:
         pass
-    #next, check if its the first entry of the value
+    #next, check if it matches a command base
     for k in catalog:
-        if catalog[k][0].lower() == lookupstr.lower():
+        if catalog[k]['BASE'].lower() == lookupstr.lower():
             return k
     return -1

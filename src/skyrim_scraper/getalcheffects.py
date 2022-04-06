@@ -47,7 +47,7 @@ def run(is_test = False):
             i+=1
         effect_entry = {'NAME':name, 'CODE':code, 'INGR':ingr, 'BASE_COST':float(base_cost), 'base_magnitude':float(base_magnitude), 'BASE_DUR':float(base_dur), 'VALUE':float(value)}
         effect_list.append(effect_entry)
-        write_to_file(effect_list, is_test)
+    write_to_file(effect_list, is_test)
 
 def write_to_file(data, is_test=False):
     dirname = os.path.dirname(__file__)

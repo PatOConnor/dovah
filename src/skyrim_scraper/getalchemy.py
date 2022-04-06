@@ -145,7 +145,7 @@ def write_to_file(data, is_test=False):
     else:
         dirname = dirname[:-14]
         filename = os.path.join(dirname, 'skyrimdata/skyrimalchemy.py')
-    file = open(filename, 'a', encoding="utf-8")
+    file = open(filename, 'w', encoding="utf-8")
     i = 0
     file.write('ingredients = {\n')
     for item in data:  #this writes it in python dictionary syntax

@@ -7,8 +7,7 @@ from rich import print
 def run(is_test=False):
     url = 'https://en.uesp.net/wiki/Skyrim:Console'
     commands = scrape_page(url)
-    print(commands)
-    #write_to_file(commands, is_test)
+    write_to_file(commands, is_test)
 
 def scrape_page(url_string):
     commands = []
@@ -26,7 +25,11 @@ def scrape_page(url_string):
         #not a header row
         if len(row) == 7:
             command = row.contents[1].text
-            if not command: continue #parse_command rejects bad input
+            #known rows to not include
+            if len(command) > 30 or command.startswith('000') or command.startswith('xx0'
+               ) or command in ['Faction ID', 'Whiterun', 'Solitude', 'Windhelm', 'Markarth', 
+               'Riften', 'Morthal', 'Dawnstar', 'Winterhold', 'Falkreath', 'High Hrothgar']: continue
+            
             details = row.contents[3].text
             command_dict = parse_command(command, details)
             commands.append(command_dict)
@@ -35,13 +38,16 @@ def scrape_page(url_string):
 
 def parse_command(command, details):
     new_command = dict()
-    new_command['DETAILS'] = details
-    new_command['PARAMS'] = None
-    
-    #looks at command string and splits it up
-    
-    
-    new_command['BASE'] = None
+    if command.find('<') == -1:
+        new_command['BASE'] = command
+        new_command['PARAMS'] = None
+    else:
+        cmd_parts = command.split('<') #foo <bar> <baz> -> [foo, bar>, baz>]
+        new_command['BASE'] = cmd_parts.pop(0)
+        cmd_parts = ['<'+x for x in cmd_parts]
+        cmd_parts = [x.replace('\xa0', ' ') for x in cmd_parts]
+        new_command['PARAMS'] = cmd_parts
+    new_command['DETAILS'] = details.replace('\xa0', ' ')
     return new_command
             
 
@@ -57,7 +63,7 @@ def write_to_file(data, is_test=False):
         filename = os.path.join(dirname, "skyrimdata\skyrimcommands.py")
     file = open(filename, 'w', encoding="utf-8")
     i = 0
-    file.write('skyrim_factions = {\n')
+    file.write('skyrim_commands = {\n')
     for item in data:  #this writes it in python dictionary syntax
         file.write('\t'+str(i)+':'+str(item)+',\n')
         i += 1
