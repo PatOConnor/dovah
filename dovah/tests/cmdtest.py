@@ -1,38 +1,71 @@
 """Tests to make sure the command maker prints commands that
    actually function in-game in skyrim"""
-# This line does NOT work; when it's uncommented, it enables intellisense on the term command_maker:
-#from ..dovah_cli import commandmaker as command_maker
+# This line does NOT work and is not intended for the final product
+# it's for use while coding to enable intellisense when combined with a type hint.
+from ..dovah_cli.commandmaker import CommandMaker
 
 class CmdTest:
-    #def run(command_maker):
-    def run():
+    def __init__(self, cmd_maker_object:CommandMaker):
+        self.cmd_maker = cmd_maker_object
+
+
+    def run(self):
+        self.complete_commands()
+        self.incomplete_commands()
+        self.bad_input_commands()
+    
+    def complete_commands(self):
         #does not take a parameter
-        CmdTest.toggle_commands()
+        self._complete_toggle_commands()
         #takes a target
-        CmdTest.targeted_commands()
+        self._complete_targeted_commands()
         #takes arguments but no target
-        CmdTest.untargeted_commands()
+        self._complete_untargeted_commands()
 
-
-
+    def incomplete_commands(self):
+        #blank command - shuold place user right at beginning of "add command" screen
+        self.cmd_maker.add_cmd()
         
-    def toggle_commands():
+        self._incomplete_toggle_commands()
+
+    def bad_input_commands(self):
         pass
 
+    def _complete_toggle_commands(self):
+        """No User Interaction"""
+        #writes command with no argument
+        self.cmd_maker.add_cmd(['0'])
+        self.cmd_maker.add_cmd(['animcam'])
+        self.cmd_maker.add_cmd(['0', 'foo'])#should ignore extra input
+        self.cmd_maker.add_cmd(['tcl', '1A6A4'])
+        self.cmd_maker.add_cmd(['tcl', None])
+        
+    
+    def _complete_targeted_commands(self):
+        self.cmd_maker.add_cmd()
+        self.cmd_maker.add_cmd()
+        self.cmd_maker.add_cmd()
+        self.cmd_maker.add_cmd()
+        self.cmd_maker.add_cmd()
+        self.cmd_maker.add_cmd()
+        
+
+    def _complete_untargeted_commands():
+        self.cmd_maker.add_cmd()
+        self.cmd_maker.add_cmd()
+        self.cmd_maker.add_cmd()
+        self.cmd_maker.add_cmd()
+        self.cmd_maker.add_cmd()
+        self.cmd_maker.add_cmd()
+        self.cmd_maker.add_cmd()
+        self.cmd_maker.add_cmd()
+        self.cmd_maker.add_cmd()
+        self.cmd_maker.add_cmd()
 
 
-
-
-
-
-    def targeted_commands():
-        pass
-
-
-
-
-
-    def untargeted_commands():
-        pass
-
+    def _incomplete_toggle_commands(self):
+            """User Interaction"""
+            self.cmd_maker.add_cmd('tai')
+            self.cmd_maker.add_cmd('tcl')
+            self.cmd_maker.add_cmd('tcai')
 

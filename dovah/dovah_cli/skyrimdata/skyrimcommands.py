@@ -23,6 +23,7 @@ skyrim_commands = {
 	21:{'BASE': 'tt', 'PARAMS': None, 'DETAILS': 'Toggle trees'},
 	22:{'BASE': 'twf', 'PARAMS': None, 'DETAILS': 'Toggle wireframe'},
 	23:{'BASE': 'tws', 'PARAMS': None, 'DETAILS': 'Toggle water system'},
+	
 	24:{'BASE': 'additem ', 'PARAMS': ['<item ID> ', '<count> ', '<flag (optional)>'], 'DETAILS': 'Give a character the specified amount of an item'},
 	25:{'BASE': 'addperk ', 'PARAMS': ['<perk ID>'], 'DETAILS': 'Give a character the selected perk'},
 	26:{'BASE': 'addspell ', 'PARAMS': ['<spell ID>'], 'DETAILS': "Add a specific spell to a character's available arsenal."},
@@ -94,6 +95,7 @@ skyrim_commands = {
 	92:{'BASE': 'unequipitem ', 'PARAMS': ['<Item baseID>'], 'DETAILS': 'Unequip item from selected NPC'},
 	93:{'BASE': 'unlock', 'PARAMS': None, 'DETAILS': 'Unlock the targeted object.'},
 	94:{'BASE': 'unlockword ', 'PARAMS': ['<word>'], 'DETAILS': 'Unlock a dragon shout.'},
+
 	95:{'BASE': 'bat', 'PARAMS': None, 'DETAILS': 'Execute a batch file'},
 	96:{'BASE': 'caqs', 'PARAMS': None, 'DETAILS': 'Complete all quest stages'},
 	97:{'BASE': 'coc', 'PARAMS': None, 'DETAILS': 'Transport to <cellname>'},
